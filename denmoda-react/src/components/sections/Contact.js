@@ -5,9 +5,9 @@ import emailjs from '@emailjs/browser';
 
 // EmailJS Configuration
 const EMAILJS_CONFIG = {
-  serviceId: 'service_tdwzv2j',
-  templateId: 'template_6juvqcd',
-  publicKey: 'dYQW0Yb-PufAxNZAc'
+  serviceId: process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_tdwzv2j',
+  templateId: process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_6juvqcd',
+  publicKey: process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'dYQW0Yb-PufAxNZAc'
 };
 
 const Contact = () => {

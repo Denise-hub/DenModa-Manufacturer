@@ -103,6 +103,11 @@ REACT_APP_FIREBASE_APP_ID=your_app_id
 REACT_APP_CLOUDINARY_CLOUD_NAME=your_cloud_name
 REACT_APP_CLOUDINARY_UPLOAD_PRESET=your_upload_preset
 
+# EmailJS Configuration
+REACT_APP_EMAILJS_SERVICE_ID=your_service_id
+REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id
+REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key
+
 # Admin Configuration
 REACT_APP_ADMIN_EMAIL=your_admin_email@example.com
 ```

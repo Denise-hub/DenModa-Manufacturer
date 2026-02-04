@@ -1,0 +1,74 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow public read access to all collections
+    match /{collection}/{document=**} {
+      allow read: if true;
+    }
+    
+    // Allow write access to any authenticated user
+    // TODO: Replace with specific admin email for production
+    // Example: request.auth.token.email == 'your-admin@gmail.com'
+    
+    match /hero/{document=**} {
+      allow write: if request.auth != null;
+    }
+    
+    match /about/{document=**} {
+      allow write: if request.auth != null;
+    }
+    
+    match /services/{document=**} {
+      allow write: if request.auth != null;
+    }
+    
+    match /products/{document=**} {
+      allow write: if request.auth != null;
+    }
+    
+    match /pricing/{document=**} {
+      allow write: if request.auth != null;
+    }
+    
+    match /team/{document=**} {
+      allow write: if request.auth != null;
+    }
+    
+    match /contact/{document=**} {
+      allow write: if request.auth != null;
+    }
+    
+    match /faq/{document=**} {
+      allow write: if request.auth != null;
+    }
+    
+    match /iconBoxes/{document=**} {
+      allow write: if request.auth != null;
+    }
+    
+    match /siteSettings/{document=**} {
+      allow write: if request.auth != null;
+    }
+    
+    // Messages collection - Allow anyone to CREATE (contact form)
+    // Only authenticated users can read, update, delete
+    match /messages/{document=**} {
+      allow create: if true;  // Anyone can send a message
+      allow read, update, delete: if request.auth != null;  // Only admin can manage
+    }
+    
+    // Orders collection - Allow anyone to CREATE (order tracking from website)
+    // Only authenticated users can read, update, delete
+    match /orders/{document=**} {
+      allow create: if true;  // Anyone can place an order
+      allow read, update, delete: if request.auth != null;  // Only admin can manage
+    }
+    
+    // Analytics collection - Allow anyone to CREATE (page view tracking)
+    // Only authenticated users can read
+    match /analytics/{document=**} {
+      allow create: if true;  // Anyone can be tracked
+      allow read: if request.auth != null;  // Only admin can view analytics
+    }
+  }
+}

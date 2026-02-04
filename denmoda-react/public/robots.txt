@@ -1,0 +1,30 @@
+# DenModa - Official Website
+# https://denmoda.web.app
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://denmoda.web.app/sitemap.xml
+
+# Disallow admin areas
+Disallow: /admin
+Disallow: /login
+
+# Allow important assets
+Allow: /assets/
+Allow: /static/
+
+# Crawl delay for politeness
+Crawl-delay: 1
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing specific
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1

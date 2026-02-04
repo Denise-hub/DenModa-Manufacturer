@@ -181,14 +181,30 @@
     }
     </script>
     
-    <!-- Structured Data - WebSite (For sitelinks search box) -->
+    <!-- Structured Data - WebSite (For sitelinks search box and better ranking) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "DenModa",
-      "alternateName": "DenModa Official",
-      "url": "https://denmoda.web.app"
+      "alternateName": ["DenModa Official", "DenModa Handcrafted Sandals", "DenModa Africa"],
+      "url": "https://denmoda.web.app",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://denmoda.web.app/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "DenModa",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://denmoda.web.app/assets/denmoda.png"
+        }
+      }
     }
     </script>
   </head>

@@ -1,0 +1,9 @@
+# DenModa - Old GitHub Pages Site
+# This site redirects to https://denmoda.web.app
+
+# Block all crawlers from indexing this old site
+User-agent: *
+Disallow: /
+
+# Point to the new official site
+Sitemap: https://denmoda.web.app/sitemap.xml

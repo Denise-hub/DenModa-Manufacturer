@@ -454,9 +454,13 @@ export const seedDatabase = async (defaultData) => {
       }
     }
 
-    console.log('Database seeded successfully!');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Database seeded successfully!');
+    }
   } catch (error) {
-    console.error('Error seeding database:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error seeding database:', error);
+    }
     throw error;
   }
 };

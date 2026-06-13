@@ -336,14 +336,14 @@ export const DEFAULT_FAQS = [
   },
   {
     id: 'faq4',
-    question: 'Which material is used?',
-    answer: 'Some of our products are made from yarn, which means we sew them by hand and then attach the outsole that comes from the tire. And other products are made from leather and after putting on the outsole of the tires too.',
+    question: 'Which materials are used for the sandals?',
+    answer: 'Our sandals combine artisan craftsmanship with sustainability. The uppers are made from hand-woven thread art or premium leather. The outsoles are handcrafted from recycled, discarded car tires, providing unmatched durability while helping clean up landfills and community waste.',
     order: 4
   },
   {
     id: 'faq5',
-    question: 'Do you offer good product quality service?',
-    answer: 'Yes, our products are made from tire outsole, which makes them durable and good quality.',
+    question: 'Are DenModa sandals durable and high quality?',
+    answer: 'Absolutely. By using upcycled car tire outsoles and premium grade leathers/threads, our sandals are built for extreme durability, comfort, and traction, meaning they last for years and are highly sustainable.',
     order: 5
   }
 ];

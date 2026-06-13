@@ -26,7 +26,7 @@ const Contact = () => {
     address: 'N28 Kyeshero Q, Goma, RDC',
     phone: '+254 798 257 117',
     whatsapp: '254798257117',
-    email: 'denmaombi@gmail.com', // Hidden from display, used for form submission only
+    email: 'denmoda.handmadeshoes@gmail.com', // Hidden from display, used for form submission only
     socials: [
       { icon: 'bi-facebook', label: 'Facebook', url: 'https://web.facebook.com/profile.php?id=100078174605745', color: '#1877F2' },
       { icon: 'bi-instagram', label: 'Instagram', url: 'https://www.instagram.com/den_denmoda', color: '#E4405F' },
@@ -35,6 +35,8 @@ const Contact = () => {
       { icon: 'bi-linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/company/denmoda/', color: '#0A66C2' }
     ]
   };
+
+  const ADMIN_EMAIL = process.env.REACT_APP_ADMIN_EMAIL || 'denmoda.handmadeshoes@gmail.com';
 
   const content = { ...defaultContact, ...contact };
 
@@ -63,29 +65,46 @@ const Contact = () => {
         isRead: false
       });
       
-      // Send automatic email reply to the user
+      // Get visitor location and device details
+      const visitorLocation = sessionStorage.getItem('denmoda_visitor_location') || 'Unknown/Not Shared';
+      const visitorDevice = sessionStorage.getItem('denmoda_visitor_device') || 'Desktop/Unknown';
+      
+      // Send email notification to the admin
       try {
         const emailResult = await emailjs.send(
           EMAILJS_CONFIG.serviceId,
           EMAILJS_CONFIG.templateId,
           {
             from_name: formData.name,
-            to_email: formData.email,
+            to_email: ADMIN_EMAIL,
             reply_to: formData.email,
-            to_name: formData.name,
-            message: formData.message,
-            title: formData.subject || 'General Inquiry',
-            subject: formData.subject || 'General Inquiry'
+            to_name: 'DenModa Admin',
+            subject: `New Contact Message: ${formData.subject || 'General Inquiry'}`,
+            message: `You have received a new message from the contact form on your DenModa website!\n\n` +
+              `━━━━━━━━━━━━━━━━━━━━━\n` +
+              `CONTACT DETAILS\n` +
+              `━━━━━━━━━━━━━━━━━━━━━\n\n` +
+              `Name: ${formData.name}\n` +
+              `Email: ${formData.email}\n` +
+              `Subject: ${formData.subject || 'General Inquiry'}\n` +
+              `Message: ${formData.message}\n\n` +
+              `━━━━━━━━━━━━━━━━━━━━━\n` +
+              `VISITOR DETAILS\n` +
+              `━━━━━━━━━━━━━━━━━━━━━\n\n` +
+              `Device: ${visitorDevice}\n` +
+              `Approximate Location: ${visitorLocation}\n\n` +
+              `Time: ${new Date().toLocaleString()}`,
+            title: `Contact Form - ${formData.name}`
           },
           EMAILJS_CONFIG.publicKey
         );
         if (process.env.NODE_ENV === 'development') {
-          console.log('Auto-reply email sent successfully:', emailResult);
+          console.log('Admin notification email sent successfully:', emailResult);
         }
       } catch (emailError) {
         // Log error in development only
         if (process.env.NODE_ENV === 'development') {
-          console.error('Error sending auto-reply email:', emailError);
+          console.error('Error sending admin notification email:', emailError);
           console.error('Email error details:', JSON.stringify(emailError, null, 2));
         }
         // Don't fail the whole submission if email fails

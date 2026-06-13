@@ -7,7 +7,7 @@
 /* ==========================================================================
    Google Fonts - Original Fonts
    ========================================================================== */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
 /* ==========================================================================
    CSS Variables - Original Brand Colors
@@ -29,7 +29,7 @@
    General Styles - Original
    ========================================================================== */
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #444444;
 }
 
@@ -49,7 +49,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Raleway", sans-serif;
+  font-family: "Outfit", sans-serif;
 }
 
 /* ==========================================================================
@@ -1084,14 +1084,12 @@ body.dark-mode::-webkit-scrollbar-thumb:hover {
 
 #hero:before {
   content: "";
-  background: rgba(26, 43, 75, 0.65);
+  background: linear-gradient(rgba(26, 43, 75, 0.7), rgba(26, 43, 75, 0.55));
   position: absolute;
   bottom: 0;
   top: 0;
   left: 0;
   right: 0;
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
 }
 
 #hero .carousel,
@@ -1170,7 +1168,7 @@ body.dark-mode::-webkit-scrollbar-thumb:hover {
 }
 
 #hero .btn-get-started {
-  font-family: "Raleway", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 1px;
@@ -1188,8 +1186,39 @@ body.dark-mode::-webkit-scrollbar-thumb:hover {
 
 #hero .btn-get-started:hover {
   background: #3c74db;
-  color: #1a2b4b;
-  text-decoration: none;
+  border-color: #3c74db;
+  color: #fff;
+}
+
+/* Custom smooth text transitions for carousel slides */
+#hero .carousel-item h2 {
+  opacity: 0;
+  transform: translateY(-25px);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
+}
+#hero .carousel-item.active h2 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#hero .carousel-item p {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, opacity 0.7s ease 0.15s;
+}
+#hero .carousel-item.active p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#hero .carousel-item .btn-get-started {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, opacity 0.7s ease 0.3s, background-color 0.3s ease, border-color 0.3s ease;
+}
+#hero .carousel-item.active .btn-get-started {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (min-width: 1024px) {
@@ -1376,7 +1405,7 @@ section {
 }
 
 .about .content .btn-learn-more {
-  font-family: "Raleway", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-weight: 600;
   font-size: 14px;
   letter-spacing: 1px;
@@ -2030,7 +2059,7 @@ section {
   transition: none;
   font-size: 14px;
   font-weight: 400;
-  font-family: "Raleway", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-weight: 600;
   transition: 0.3s;
 }
@@ -2783,7 +2812,7 @@ section {
   font-size: 14px;
   line-height: 24px;
   margin-bottom: 0;
-  font-family: "Raleway", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #fff;
 }
 

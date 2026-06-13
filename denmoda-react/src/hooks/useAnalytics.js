@@ -39,7 +39,7 @@ const EMAILJS_CONFIG = {
 };
 
 // Admin email for notifications
-const ADMIN_EMAIL = process.env.REACT_APP_ADMIN_EMAIL || 'denmoda.manufacturing@gmail.com';
+const ADMIN_EMAIL = process.env.REACT_APP_ADMIN_EMAIL || 'denmoda.handmadeshoes@gmail.com';
 
 export const useAnalytics = () => {
   const location = useLocation();
@@ -51,12 +51,31 @@ export const useAnalytics = () => {
         const visitorId = getVisitorId();
         const deviceInfo = getDeviceInfo();
         const referrer = document.referrer || 'direct';
+
+        // Fetch approximate location from ipapi.co
+        let locationStr = sessionStorage.getItem('denmoda_visitor_location');
+        if (!locationStr) {
+          try {
+            const res = await fetch('https://ipapi.co/json/');
+            if (res.ok) {
+              const data = await res.json();
+              locationStr = `${data.city || 'Unknown City'}, ${data.region || 'Unknown Region'}, ${data.country_name || 'Unknown Country'} (IP: ${data.ip || 'Unknown'})`;
+            } else {
+              locationStr = 'Location Access Failed';
+            }
+          } catch (err) {
+            locationStr = 'Location Access Failed';
+          }
+          sessionStorage.setItem('denmoda_visitor_location', locationStr);
+          sessionStorage.setItem('denmoda_visitor_device', deviceInfo.device);
+        }
         
         // Track page view in Firestore
         await firestoreService.trackPageView({
           visitorId,
           page: location.pathname,
           referrer,
+          location: locationStr,
           ...deviceInfo
         });
 
@@ -75,7 +94,7 @@ export const useAnalytics = () => {
               to_name: 'DenModa Admin',
               reply_to: ADMIN_EMAIL,
               subject: 'New Visitor on DenModa Website',
-              message: `A new visitor has arrived on your DenModa website!\n\nVisitor ID: ${visitorId}\nDevice: ${deviceInfo.device}\nPage: ${window.location.href}\nReferrer: ${referrer}\nTime: ${new Date().toLocaleString()}`,
+              message: `A new visitor has arrived on your DenModa website!\n\nVisitor ID: ${visitorId}\nDevice: ${deviceInfo.device}\nApproximate Location: ${locationStr}\nPage: ${window.location.href}\nReferrer: ${referrer}\nTime: ${new Date().toLocaleString()}`,
               title: 'New Visitor Notification'
             },
             EMAILJS_CONFIG.publicKey

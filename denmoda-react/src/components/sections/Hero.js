@@ -68,10 +68,29 @@ const Hero = () => {
               className={`carousel-item ${index === 0 ? 'active' : ''}`}
             >
               <div className="carousel-container">
-                <h2 className="animate__animated animate__fadeInDown">
+                <h2>
                   {slide.title} {slide.highlightText && <span>{slide.highlightText}</span>}
                 </h2>
-                <p className="animate__animated animate__fadeInUp">{slide.description}</p>
+                <p>{slide.description}</p>
+                <a 
+                  href="#portfolio" 
+                  className="btn-get-started"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#portfolio');
+                    if (element) {
+                      const headerOffset = 80;
+                      const elementPosition = element.getBoundingClientRect().top;
+                      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                      });
+                    }
+                  }}
+                >
+                  Explore Collection
+                </a>
               </div>
             </div>
           ))}

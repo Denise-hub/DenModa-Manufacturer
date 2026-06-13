@@ -87,7 +87,7 @@ const SettingsManager = () => {
         },
         contact: {
           address: 'N28 Kyeshero Q, Goma, RDC',
-          email: 'denmoda.manufacturing@gmail.com',
+          email: 'denmoda.handmadeshoes@gmail.com',
           whatsapp: '254798257117',
           facebook: 'https://web.facebook.com/profile.php?id=100078174605745',
           youtube: 'https://www.youtube.com/channel/UCAfg9CgYWE5dCaay8GcGtsA/',
@@ -291,7 +291,7 @@ const SettingsManager = () => {
                 </li>
                 <li>
                   <i className="bi bi-shield-check text-info me-1"></i>
-                  Admin: {process.env.REACT_APP_ADMIN_EMAIL || 'denmoda.manufacturing@gmail.com'}
+                  Admin: {process.env.REACT_APP_ADMIN_EMAIL || 'denmoda.handmadeshoes@gmail.com'}
                 </li>
               </ul>
             </div>

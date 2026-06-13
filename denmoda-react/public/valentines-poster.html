@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DenModa Valentine's Day Special Offer - Poster Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Arial', sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .poster {
+            width: 1080px;
+            max-width: 100%;
+            height: 1350px;
+            background: linear-gradient(135deg, #ffeef5 0%, #fff0f5 50%, #ffeef8 100%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-radius: 20px;
+        }
+
+        /* Decorative Hearts */
+        .heart {
+            position: absolute;
+            color: rgba(220, 53, 69, 0.15);
+            font-size: 60px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .heart-1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .heart-2 { top: 15%; right: 8%; animation-delay: 1s; }
+        .heart-3 { top: 50%; left: 3%; animation-delay: 2s; }
+        .heart-4 { bottom: 20%; right: 5%; animation-delay: 1.5s; }
+        .heart-5 { bottom: 15%; left: 10%; animation-delay: 0.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Content Container */
+        .content {
+            position: relative;
+            z-index: 10;
+            padding: 60px 40px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Header */
+        .header {
+            margin-top: 40px;
+        }
+
+        .special-offer {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a2b4b;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .valentines-title {
+            font-size: 72px;
+            font-weight: 700;
+            color: #dc3545;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+
+        .discount {
+            font-size: 42px;
+            font-weight: 800;
+            color: #1a2b4b;
+            margin: 30px 0;
+            letter-spacing: 2px;
+        }
+
+        .discount-highlight {
+            color: #dc3545;
+            font-size: 56px;
+        }
+
+        /* Product Showcase */
+        .product-showcase {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            margin: 40px 0;
+            gap: 30px;
+        }
+
+        .product-item {
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '👠';
+            font-size: 80px;
+            opacity: 0.4;
+        }
+
+        .product-image::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.1) 0%, rgba(220, 53, 69, 0.05) 100%);
+            border-radius: 10px;
+        }
+
+        .product-label {
+            font-size: 16px;
+            color: #1a2b4b;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            margin-top: 40px;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            padding: 20px 60px;
+            font-size: 24px;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(220, 53, 69, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(220, 53, 69, 0.5);
+        }
+
+        .cta-url {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        /* Footer with Logo */
+        .footer {
+            margin-top: auto;
+            padding-bottom: 30px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .logo-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+        }
+
+        .brand-info {
+            text-align: left;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a2b4b;
+            margin-bottom: 5px;
+        }
+
+        .brand-tagline {
+            font-size: 14px;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        /* Decorative Elements */
+        .decorative-line {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #dc3545, transparent);
+            margin: 20px auto;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .poster {
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .valentines-title {
+                font-size: 48px;
+            }
+
+            .discount {
+                font-size: 32px;
+            }
+
+            .discount-highlight {
+                font-size: 42px;
+            }
+
+            .product-showcase {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .cta-button {
+                padding: 18px 50px;
+                font-size: 20px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .poster {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <!-- Decorative Hearts -->
+        <div class="heart heart-1">❤️</div>
+        <div class="heart heart-2">❤️</div>
+        <div class="heart heart-3">💖</div>
+        <div class="heart heart-4">💕</div>
+        <div class="heart heart-5">💗</div>
+
+        <div class="content">
+            <!-- Header -->
+            <div class="header">
+                <div class="special-offer">Special Offer</div>
+                <div class="decorative-line"></div>
+                <h1 class="valentines-title">Valentine's Day</h1>
+                <div class="decorative-line"></div>
+                <div class="discount">
+                    Up to <span class="discount-highlight">20% OFF</span>
+                </div>
+            </div>
+
+            <!-- Product Showcase -->
+            <div class="product-showcase">
+                <div class="product-item">
+                    <div class="product-image"></div>
+                    <div class="product-label">Premium Sandals</div>
+                </div>
+                <div class="product-item">
+                    <div class="product-image"></div>
+                    <div class="product-label">Handcrafted Collection</div>
+                </div>
+                <div class="product-item">
+                    <div class="product-image"></div>
+                    <div class="product-label">Gift Sets</div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <a href="https://www.denmoda.web.app" class="cta-button" target="_blank">
+                    Shop Now
+                </a>
+                <div class="cta-url">www.denmoda.web.app</div>
+            </div>
+
+            <!-- Footer with Logo -->
+            <div class="footer">
+                <div class="logo-container">
+                    <img src="assets/denmoda.png" alt="DenModa Logo" class="logo-image">
+                    <div class="brand-info">
+                        <div class="brand-name">DenModa</div>
+                        <div class="brand-tagline">Handmade Excellence</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

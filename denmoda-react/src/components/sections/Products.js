@@ -12,7 +12,7 @@ const EMAILJS_CONFIG = {
 };
 
 // Admin email for notifications
-const ADMIN_EMAIL = process.env.REACT_APP_ADMIN_EMAIL || 'denmoda.manufacturing@gmail.com';
+const ADMIN_EMAIL = process.env.REACT_APP_ADMIN_EMAIL || 'denmoda.handmadeshoes@gmail.com';
 
 // USD to KES exchange rate
 const USD_TO_KES_RATE = 130;
@@ -142,6 +142,19 @@ const Products = () => {
     customerPhone: '',
     selectedSize: ''
   });
+  const [lightboxImage, setLightboxImage] = useState(null);
+
+  const openLightbox = (image, title) => {
+    setLightboxImage({ image, title });
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = useCallback(() => {
+    setLightboxImage(null);
+    if (!showModal && !showOrderForm) {
+      document.body.style.overflow = '';
+    }
+  }, [showModal, showOrderForm]);
 
   // Use Firebase products or defaults
   const displayProducts = useMemo(() => {
@@ -192,7 +205,9 @@ const Products = () => {
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape') {
-        if (showOrderForm) {
+        if (lightboxImage) {
+          closeLightbox();
+        } else if (showOrderForm) {
           closeOrderForm();
         } else {
           closeModal();
@@ -201,7 +216,7 @@ const Products = () => {
     };
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
-  }, [showOrderForm, closeOrderForm, closeModal]);
+  }, [lightboxImage, showOrderForm, closeOrderForm, closeModal, closeLightbox]);
 
   const handleWhatsAppOrderClick = (product, event) => {
     if (event) event.preventDefault();
@@ -269,6 +284,10 @@ const Products = () => {
         status: 'pending',
         source: 'website'
       };
+        // Retrieve visitor tracking details from session storage
+        const visitorLocation = sessionStorage.getItem('denmoda_visitor_location') || 'Unknown/Not Shared';
+        const visitorDevice = sessionStorage.getItem('denmoda_visitor_device') || 'Desktop/Unknown';
+
         const orderId = await firestoreService.createOrder(orderData);
         
         // Send email notification to admin about new order (async, don't wait)
@@ -292,6 +311,11 @@ const Products = () => {
               `Size: ${selectedSize}\n` +
               `Category: ${category}\n` +
               `Status: Pending\n\n` +
+              `━━━━━━━━━━━━━━━━━━━━━\n` +
+              `VISITOR DETAILS\n` +
+              `━━━━━━━━━━━━━━━━━━━━━\n\n` +
+              `Device: ${visitorDevice}\n` +
+              `Approximate Location: ${visitorLocation}\n\n` +
               `Please check your admin panel to confirm and process this order.\n\n` +
               `Order ID: ${orderId || 'N/A'}\n` +
               `Time: ${new Date().toLocaleString()}`,
@@ -387,7 +411,11 @@ const Products = () => {
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
               <div key={product.id} className="product-card" data-aos="fade-up">
-                <div className="product-image">
+                <div 
+                  className="product-image" 
+                  onClick={() => openLightbox(product.image, product.title)} 
+                  style={{ cursor: 'zoom-in' }}
+                >
                   <img 
                     src={product.image} 
                     alt={product.title}
@@ -395,20 +423,26 @@ const Products = () => {
                       e.target.src = '/assets/denmoda.png';
                     }}
                   />
-                  <div className="product-category">
+                  <div className="product-category" onClick={(e) => e.stopPropagation()}>
                     {getCategoryLabel(product.category)}
                   </div>
                   <div className="product-overlay">
                     <button 
                       className="product-action-btn info-btn"
-                      onClick={() => openProductDetails(product)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openProductDetails(product);
+                      }}
                       title="View Details"
                     >
                       <i className="bi bi-info-circle"></i>
                     </button>
                     <button 
                       className="product-action-btn order-btn"
-                      onClick={(e) => handleWhatsAppOrderClick(product, e)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleWhatsAppOrderClick(product, e);
+                      }}
                       title="Order via WhatsApp"
                     >
                       <i className="bi bi-whatsapp"></i>
@@ -416,7 +450,7 @@ const Products = () => {
                   </div>
                 </div>
                 <div className="product-details">
-                  <h4 className="product-title">{product.title}</h4>
+                  <h4 className="product-title" style={{ cursor: 'pointer' }} onClick={() => openProductDetails(product)}>{product.title}</h4>
                   <div className="product-meta">
                     <span className="product-price">
                       ${product.price} <span className="price-kes">/ KES {(product.price * USD_TO_KES_RATE).toLocaleString()}</span>
@@ -427,6 +461,16 @@ const Products = () => {
                       </span>
                     )}
                   </div>
+                  <button 
+                    className="btn btn-whatsapp-card w-100 mt-3 d-flex align-items-center justify-content-center gap-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleWhatsAppOrderClick(product, e);
+                    }}
+                  >
+                    <i className="bi bi-whatsapp"></i>
+                    <span>Order Now</span>
+                  </button>
                 </div>
               </div>
             ))
@@ -448,7 +492,11 @@ const Products = () => {
             </button>
             
             <div className="modal-content">
-              <div className="modal-image">
+              <div 
+                className="modal-image" 
+                onClick={() => openLightbox(selectedProduct.image, selectedProduct.title)}
+                style={{ cursor: 'zoom-in' }}
+              >
                 <img 
                   src={selectedProduct.image} 
                   alt={selectedProduct.title}
@@ -594,6 +642,130 @@ const Products = () => {
           </div>
         </div>
       )}
+      {/* Gallery Lightbox Preview */}
+      {lightboxImage && (
+        <div className="lightbox-overlay" onClick={closeLightbox}>
+          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <button className="lightbox-close" onClick={closeLightbox}>
+              <i className="bi bi-x-lg"></i>
+            </button>
+            <img 
+              src={lightboxImage.image} 
+              alt={lightboxImage.title} 
+              className="lightbox-img" 
+              onError={(e) => { e.target.src = '/assets/denmoda.png'; }}
+            />
+            {lightboxImage.title && <div className="lightbox-title">{lightboxImage.title}</div>}
+          </div>
+        </div>
+      )}
+
+      {/* Styled CSS for Lightbox & Prominent Buttons */}
+      <style>{`
+        /* Zoom & Hover effects on Product Card */
+        .product-card .product-image {
+          position: relative;
+          overflow: hidden;
+          cursor: zoom-in;
+        }
+        .product-card .product-image img {
+          transition: transform 0.4s ease;
+        }
+        .product-card:hover .product-image img {
+          transform: scale(1.06);
+        }
+
+        /* Order button on Product Card */
+        .btn-whatsapp-card {
+          background: linear-gradient(135deg, #58eecd 0%, #3c74db 100%);
+          border: none;
+          border-radius: 30px;
+          color: #fff !important;
+          padding: 10px 18px;
+          font-weight: 700;
+          font-size: 0.85rem;
+          transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.2s ease;
+          box-shadow: 0 4px 12px rgba(88, 238, 205, 0.25);
+        }
+        .btn-whatsapp-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(60, 116, 219, 0.35);
+          opacity: 0.95;
+        }
+        .btn-whatsapp-card:active {
+          transform: translateY(0);
+        }
+
+        /* Lightbox Styles */
+        .lightbox-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(26, 43, 75, 0.96);
+          z-index: 99999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          backdrop-filter: blur(8px);
+          animation: fadeIn 0.25s ease-out;
+        }
+        .lightbox-content {
+          position: relative;
+          max-width: 90%;
+          max-height: 85%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .lightbox-img {
+          max-width: 100%;
+          max-height: 80vh;
+          border-radius: 12px;
+          box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+          object-fit: contain;
+          animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .lightbox-title {
+          color: #fff;
+          margin-top: 15px;
+          font-size: 1.2rem;
+          font-weight: 600;
+          text-align: center;
+          text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+        }
+        .lightbox-close {
+          position: absolute;
+          top: -45px;
+          right: 0;
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 50%;
+          color: #fff;
+          width: 36px;
+          height: 36px;
+          font-size: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        .lightbox-close:hover {
+          background: rgba(255, 255, 255, 0.25);
+          transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes scaleUp {
+          from { transform: scale(0.92); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
+      `}</style>
     </section>
   );
 };

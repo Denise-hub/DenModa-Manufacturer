@@ -150,6 +150,46 @@ const About = () => {
               }}>
                 {content.description}
               </p>
+
+              {/* Sustainability Highlight Card */}
+              <div 
+                className="eco-mission-card mt-4"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(88, 238, 205, 0.12) 0%, rgba(60, 116, 219, 0.12) 100%)',
+                  borderRadius: '12px',
+                  padding: '18px',
+                  border: '1px solid rgba(88, 238, 205, 0.25)',
+                  boxShadow: '0 4px 15px rgba(88, 238, 205, 0.06)',
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '14px',
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+                }}
+              >
+                <span 
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    background: 'linear-gradient(135deg, #2ec4b6 0%, #3c74db 100%)',
+                    borderRadius: '10px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    boxShadow: '0 4px 10px rgba(60, 116, 219, 0.25)'
+                  }}
+                >
+                  <i className="bi bi-recycle" style={{ color: '#fff', fontSize: '20px' }}></i>
+                </span>
+                <div>
+                  <h4 style={{ color: '#1a2b4b', fontSize: '0.95rem', fontWeight: 'bold', margin: '0 0 4px 0' }}>
+                    Eco-Impact: Discarded Car Tire Outsoles
+                  </h4>
+                  <p style={{ color: '#444', fontSize: '0.82rem', lineHeight: '1.4', margin: 0 }}>
+                    We harvest discarded tires and upcycle them into premium outsoles. By transforming waste into durable, slip-resistant footwear, we keep tires out of landfills and help clear our local community's environment.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -160,6 +200,10 @@ const About = () => {
         .feature-item-hover:hover {
           transform: translateX(5px);
           box-shadow: 0 4px 20px rgba(26, 43, 75, 0.1) !important;
+        }
+        .eco-mission-card:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 25px rgba(88, 238, 205, 0.18) !important;
         }
       `}</style>
     </section>

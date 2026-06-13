@@ -18,7 +18,7 @@ const translations = {
     hero: {
       welcome: 'Welcome to',
       tagline: 'Handcrafted Sandals with Purpose',
-      subtitle: 'Premium quality sandals made by skilled artisans using sustainable materials',
+      subtitle: 'Premium quality sandals made by skilled artisans using outsoles from discarded car tires to build a cleaner community',
       cta: 'Shop Now',
       learnMore: 'Learn More'
     },
@@ -30,11 +30,11 @@ const translations = {
       features: [
         'Elegant hand-woven women\'s sandals crafted with intricate thread artistry',
         'Premium leather sandals for men, built for comfort and lasting durability',
-        'Eco-friendly outsoles made from recycled tires for sustainability',
+        'Eco-friendly outsoles handcrafted from discarded car tires to clean our local environment',
         'Custom designs tailored to your unique style and preferences',
-        'Supporting local artisans and empowering communities through craftsmanship'
+        'Supporting local waste clearance efforts and empowering communities through eco-craftsmanship'
       ],
-      description: 'At DenModa, we believe that true craftsmanship tells a story. Every stitch, every cut, and every detail is a testament to our dedication to quality and sustainability. We don\'t just make sandals—we create wearable art that combines comfort, durability, and timeless style.'
+      description: 'At DenModa, we believe that true craftsmanship tells a story of change. Every pair of sandals features a high-performance outsole crafted from recycled, discarded car tires, preventing waste from polluting our lands and creating a cleaner community. By merging tradition with eco-innovation, we create premium, comfortable, and sustainable footwear that leaves a green footprint.'
     },
     // Services Section
     services: {
@@ -114,7 +114,7 @@ const translations = {
     hero: {
       welcome: 'Bienvenue chez',
       tagline: 'Sandales Artisanales avec Passion',
-      subtitle: 'Sandales de qualité supérieure fabriquées par des artisans qualifiés',
+      subtitle: 'Sandales de qualité supérieure fabriquées par des artisans qualifiés en utilisant des semelles provenant de pneus de voiture abandonnés pour bâtir une communauté plus propre',
       cta: 'Acheter',
       learnMore: 'En Savoir Plus'
     },
@@ -126,11 +126,11 @@ const translations = {
       features: [
         'Élégantes sandales tissées à la main pour femmes avec un art du fil complexe',
         'Sandales en cuir premium pour hommes, conçues pour le confort et la durabilité',
-        'Semelles écologiques fabriquées à partir de pneus recyclés',
+        'Semelles ultra-durables fabriquées à la main à partir de pneus de voiture abandonnés pour nettoyer notre environnement',
         'Designs personnalisés adaptés à votre style unique',
-        'Soutenir les artisans locaux et autonomiser les communautés'
+        'Soutenir l\'assainissement local des déchets et autonomiser les communautés grâce à l\'éco-artisanat'
       ],
-      description: 'Chez DenModa, nous croyons que le vrai savoir-faire raconte une histoire. Chaque point, chaque coupe et chaque détail témoigne de notre dévouement à la qualité et à la durabilité. Nous ne faisons pas que des sandales, nous créons de l\'art portable.'
+      description: 'Chez DenModa, nous pensons que le véritable savoir-faire raconte une histoire de changement. Chaque paire de sandales est dotée d\'une semelle performante fabriquée à partir de pneus de voiture recyclés et abandonnés, évitant ainsi que les déchets ne polluent nos terres et favorisant une communauté plus propre. En fusionnant tradition et éco-innovation, nous créons des chaussures haut de gamme, confortables et durables.'
     },
     // Services Section
     services: {

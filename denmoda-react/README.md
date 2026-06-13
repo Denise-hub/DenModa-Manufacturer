@@ -288,7 +288,7 @@ This is a private project for DenModa. For issues or questions, contact the deve
 ## Support
 
 For technical support or inquiries:
-- Email: denmoda.manufacturing@gmail.com
+- Email: denmoda.handmadeshoes@gmail.com
 - Website: [https://denmoda.web.app](https://denmoda.web.app)
 
 ## Changelog

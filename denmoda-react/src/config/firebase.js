@@ -33,7 +33,7 @@ googleProvider.setCustomParameters({
 });
 
 // Admin email - only this email can edit content
-export const ADMIN_EMAIL = process.env.REACT_APP_ADMIN_EMAIL || 'denmoda.manufacturing@gmail.com';
+export const ADMIN_EMAIL = process.env.REACT_APP_ADMIN_EMAIL || 'denmoda.handmadeshoes@gmail.com';
 
 export default app;
 

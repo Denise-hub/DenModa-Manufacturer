@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import * as firestoreService from '../services/firestoreService';
 import emailjs from '@emailjs/browser';
@@ -43,7 +43,6 @@ const ADMIN_EMAIL = process.env.REACT_APP_ADMIN_EMAIL || 'denmoda.handmadeshoes@
 
 export const useAnalytics = () => {
   const location = useLocation();
-  const hasNotifiedRef = useRef(false); // Track if we've sent notification for this session
 
   useEffect(() => {
     const trackVisit = async () => {
@@ -81,8 +80,9 @@ export const useAnalytics = () => {
 
         // Send email notification only once per session (on first page load)
         // Make it non-blocking to avoid performance issues
-        if (!hasNotifiedRef.current && location.pathname === '/') {
-          hasNotifiedRef.current = true;
+        const hasNotified = sessionStorage.getItem('denmoda_visitor_notified');
+        if (!hasNotified && location.pathname === '/') {
+          sessionStorage.setItem('denmoda_visitor_notified', 'true');
           
           // Send email asynchronously without blocking
           emailjs.send(

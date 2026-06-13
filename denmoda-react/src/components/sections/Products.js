@@ -629,7 +629,7 @@ const Products = () => {
                   </button>
                   <button type="submit" className="order-form-submit-compact">
                     <i className="bi bi-whatsapp me-2"></i>
-                    Continue to WhatsApp
+                    Confirm Order
                   </button>
                 </div>
                 
